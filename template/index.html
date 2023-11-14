@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: grid;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+select {
+    width: 100%;
+    padding: 6px;
+    box-sizing: border-box;
+    font-size: 16px; 
+}
+    </style>
+    <title>Heart Attack Prediction</title>
+</head>
+<body>
+    <div class="container">
+       
+        <form action="{{ url_for('predict')}}" method="post" >
+           <h1 style="color: #4caf50; padding-top: 180px;">Heart Attack Prediction</h1>
+
+            <label for="Age">Age:</label>
+            <input type="number" name="Age" required>
+
+            <label for="gender">Gender:</label>
+            <select name="gender" required>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+
+            <label for="ChestPainType">ChestPainType:</label>
+            <select name="ChestPainType" required>
+                <option value="ATA">ATA</option>
+                <option value="NAP">NAP</option>
+                <option value="ASY">ASY</option>
+                <option value="TA">TA</option>
+            </select>
+
+            <label for="RestingBP">RestingBP:</label>
+            <input type="number" name="RestingBP" required="required" step="0.1">
+
+            <label for="Cholesterol">Cholesterol:</label>
+            <input type="number" name="Cholesterol" required="required" step="0.1">
+
+            <label for="FastingBS">FastingBS:</label>
+            <input type="number" name="FastingBS" required="required" step="0.1">
+            
+            <label for="RestingECG">RestingECG:</label>
+            <select name="RestingECG" required>
+                <option value="Normal">Normal</option>
+                <option value="ST">ST</option>
+                <option value="LVH">LVH</option>
+            </select>
+
+            <label for="MaxHR">MaxHR:</label>
+            <input type="number" name="MaxHR" required="required" step="0.1">
+            
+            
+            <label for="ExerciseAngina">ExerciseAngina:</label>
+            <select name="ExerciseAngina" required>
+                <option value="Y">Yes</option>
+                <option value="N">No</option>
+            </select>
+
+            <label for="Oldpeak">Oldpeak:</label>
+            <input type="number" name="Oldpeak" required="required" step="0.1">
+
+            <label for="ST_Slope">ST_Slope:</label>
+            <select name="ST_Slope" required>
+                <option value="Up">Up</option>
+                <option value="Flat">Flat</option>
+                <option value="Down">Down</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        </form>
+        <br>
+        <br>
+        {{prediction_text}}
+    </div>
+</body>
+</html>
